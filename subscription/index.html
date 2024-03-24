@@ -257,7 +257,7 @@
             <span class='progressBarCircle'></span>
           </div>
         </div>
-        <span class='progressBarPoint progressBarPoint--start'>{{ user.used_traffic | bytesformat }}/span>
+        <span class='progressBarPoint progressBarPoint--start'>{{ user.used_traffic | bytesformat }}</span>
         <span class='progressBarPoint progressBarPoint--end'>{% if not user.data_limit %}∞{% else %}{{ user.data_limit | bytesformat }}{% endif %}</span>
       </div>
     </div>
