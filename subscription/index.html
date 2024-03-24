@@ -178,7 +178,7 @@
       justify-content: flex-end;
     }
     .progressBarCircle {
-      background-color: #fff;
+      background-color: #000;
       height: calc(14px - 4px);
       width: calc(14px - 4px);
       border-radius: 50%;
@@ -245,9 +245,9 @@
             {% set remaining_hours = (remaining_seconds % (24 * 3600)) // 3600 %}
             {% set remaining_minutes = (remaining_seconds % 3600) // 60 %}
             {% if remaining_days >= 1 %}
-                {{ remaining_days | int }} days {{ remaining_hours | int }} hour
+                {{ remaining_days | int }} days {{ remaining_hours | int }} hours
             {% else %}
-                {{ remaining_hours | int }} hour {{ remaining_minutes | int }} minutes
+                {{ remaining_hours | int }} hours {{ remaining_minutes | int }} minutes
             {% endif %}
         {% endif %}
       </h2>
@@ -257,7 +257,7 @@
             <span class='progressBarCircle'></span>
           </div>
         </div>
-        <span class='progressBarPoint progressBarPoint--start'>0 GB</span>
+        <span class='progressBarPoint progressBarPoint--start'>{{ user.used_traffic | bytesformat }}/span>
         <span class='progressBarPoint progressBarPoint--end'>{% if not user.data_limit %}∞{% else %}{{ user.data_limit | bytesformat }}{% endif %}</span>
       </div>
     </div>
