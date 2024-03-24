@@ -242,12 +242,12 @@
             {% set current_timestamp = now().timestamp() %}
             {% set remaining_seconds = [user.expire - current_timestamp, 0] | max %}
             {% set remaining_days = remaining_seconds // (24 * 3600) %}
-            {% set remaining_hours = (remaining_seconds % (24 * 3600)) // 3600 %}
-            {% set remaining_minutes = (remaining_seconds % 3600) // 60 %}
+<!--             {% set remaining_hours = (remaining_seconds % (24 * 3600)) // 3600 %} -->
+<!--             {% set remaining_minutes = (remaining_seconds % 3600) // 60 %} -->
             {% if remaining_days >= 1 %}
-                {{ remaining_days | int }} days {{ remaining_hours | int }} hours
+                {{ remaining_days | int }} days
             {% else %}
-                {{ remaining_hours | int }} hours {{ remaining_minutes | int }} minutes
+                {{ remaining_hours | int }} hours
             {% endif %}
         {% endif %}
       </h2>
