@@ -15,7 +15,6 @@
     }
     body {
       background: #dbffde;
-      font-family: "Vazirmatn", sans-serif;
       line-height: normal;
       display: flex;
       align-items: center;
@@ -91,13 +90,12 @@
       overflow: hidden;
     }
     .profile-card__header {
-      text-align: right;
+      text-align: left;
       font-size: 1em;
       font-weight: bold;
       color: #000;
       display: flex;
       -webkit-box-pack: justify;
-      justify-content: right;
       cursor: pointer;
     }
     .profile-card__header::after {
@@ -107,6 +105,7 @@
       text-align: center;
       -webkit-transition: all 0.3s;
       transition: all 0.3s;
+      margin-left: 1em;
     }
     input {
       position: absolute;
@@ -116,6 +115,7 @@
     .accordion {
       width: 100%;
       overflow: hidden;
+      padding-top: 8px;
     }
     .accordion:last-child {
       margin-bottom: 0;
@@ -260,8 +260,8 @@
             <span class='progressBarCircle'></span>
           </div>
         </div>
-        <span class='progressBarPoint progressBarPoint--start'>0 GB</span>
         <span class='progressBarPoint progressBarPoint--end'>{% if not user.data_limit %}∞{% else %}{{ user.data_limit | bytesformat }}{% endif %}</span>
+        <span class='progressBarPoint progressBarPoint--start'>0 GB</span>
       </div>
     </div>
     <div class="profile-card__links">
