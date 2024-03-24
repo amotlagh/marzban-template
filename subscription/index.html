@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -14,14 +14,14 @@
       box-sizing: border-box;
     }
     body {
-      background: #fefce8;
+      background: #dbffde;
       font-family: "Vazirmatn", sans-serif;
       line-height: normal;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      direction: rtl;
+      direction: ltr;
     }
     .profile-card {
       position: relative;
@@ -66,7 +66,7 @@
       display: none;
     }
     .profile-card__bio {
-      background: #fef9c3;
+      background: #2de7f0;
       padding: 2rem;
       border-bottom: 2px dashed #000;
       text-align: center;
@@ -150,6 +150,7 @@
       transition: box-shadow 200ms ease;
       text-decoration: none;
       margin-bottom: 0.5rem;
+      background-color: #ffe3f9;
     }
     .profile-card__links-button:hover {
       box-shadow: -3px 3px 0 #000;
@@ -224,11 +225,11 @@
     <img alt="Avatar Image" class="profile-card__avatar"
       src="https://images.weserv.nl/?url=https://raw.githubusercontent.com/Gozargah/Marzban-docs/master/screenshots/logo-dark.png?v=4&h=300&w=300&fit=cover&maxage=7d&bg=000" />
     <div class="profile-card__bio">
-      <h1 class="profile-card__bio-name"> نام کاربری: {{ user.username }}</h1>
-      <h1 class="profile-card__bio-name"> {% if user.status.value == 'active' %}فعال{% elif user.status.value ==
-        'limited' %}محدود شده{% elif user.status.value == 'expired' %}منقضی شده{% elif user.status.value == 'disabled'
-        %}غیرفعال{% endif %} </h1>
-      <h2 class="profile-card__bio-title"> حجم مصرف شده: {{ user.used_traffic | bytesformat }}</h2>
+      <h1 class="profile-card__bio-name"> Username: {{ user.username }}</h1>
+      <h1 class="profile-card__bio-name"> {% if user.status.value == 'active' %}Active{% elif user.status.value ==
+        'limited' %}Limited{% elif user.status.value == 'expired' %}Expired{% elif user.status.value == 'disabled'
+        %}Disabled{% endif %} </h1>
+<!--       <h2 class="profile-card__bio-title"> حجم مصرف شده: {{ user.used_traffic | bytesformat }}</h2>
       {% if user.data_limit_reset_strategy != 'no_reset' %}
       <h2 class="profile-card__bio-title" style="direction: ltr;">
         (resets every {{ user.data_limit_reset_strategy.value }})
@@ -236,8 +237,8 @@
       {% endif %}
       <h2 class="profile-card__bio-title"> حجم کل: {% if not user.data_limit %}∞{% else %}{{ user.data_limit |
         bytesformat }}{% endif %}
-      </h2>
-      <h2 class="profile-card__bio-title"> مدت زمان باقیمانده:
+      </h2> -->
+      <h2 class="profile-card__bio-title"> Remaining time:
         {% if not user.expire %}
         ∞
         {% else %}
@@ -247,9 +248,9 @@
             {% set remaining_hours = (remaining_seconds % (24 * 3600)) // 3600 %}
             {% set remaining_minutes = (remaining_seconds % 3600) // 60 %}
             {% if remaining_days >= 1 %}
-                {{ remaining_days | int }} روز {{ remaining_hours | int }} ساعت
+                {{ remaining_days | int }} days {{ remaining_hours | int }} hour
             {% else %}
-                {{ remaining_hours | int }} ساعت {{ remaining_minutes | int }} دقیقه
+                {{ remaining_hours | int }} hour {{ remaining_minutes | int }} minutes
             {% endif %}
         {% endif %}
       </h2>
@@ -267,24 +268,24 @@
       <div class="accordion">
         <input type="checkbox" name="quick-add" id="quick-add">
         <label class="profile-card__header" for="quick-add">
-          افزودن سریع لینک سابسکریپشن
+          Quick add subscription
         </label>
         <div class="accordion-content">
           <a class="profile-card__links-button" href="v2rayng://install-config?url={{ user.subscription_url }}"
-            rel="noopener noreferrer" target="_blank">اضافه کردن به v2rayNG</a>
+            rel="noopener noreferrer" target="_blank">Add to v2rayNG</a>
           <a class="profile-card__links-button" href="streisand://import/{{ user.subscription_url }}"
-            rel="noopener noreferrer" target="_blank">اضافه کردن به Streisand</a>
+            rel="noopener noreferrer" target="_blank">Add to Streisand</a>
           <a class="profile-card__links-button" href="v2box://install-sub?url={{ user.subscription_url }}"
-            rel="noopener noreferrer" target="_blank">اضافه کردن به V2Box</a>
+            rel="noopener noreferrer" target="_blank">Add to V2Box</a>
 <!--           <a class="profile-card__links-button" href="sing-box://import-remote-profile?url={{ user.subscription_url | urlencode }}#{{ user.username | urlencode }}"
-            rel="noopener noreferrer" target="_blank">اضافه کردن به sing-box</a> -->
+            rel="noopener noreferrer" target="_blank">Add to sing-box</a> -->
         </div>
       </div>
       <div class="profile-card__separator"></div>
       <div class="accordion">
         <input type="checkbox" name="android" id="android">
         <label class="profile-card__header" for="android">
-          برنامه مورد نیاز برای اندروید
+          Required apps for Android
         </label>
         <div class="accordion-content">
           <a class="profile-card__links-button"
@@ -301,7 +302,7 @@
       <div class="accordion">
         <input type="checkbox" name="ios" id="ios">
         <label class="profile-card__header" for="ios">
-          برنامه مورد نیاز برای iOS
+          Required apps for iOS
         </label>
         <div class="accordion-content">
           <a class="profile-card__links-button" href="https://apps.apple.com/us/app/streisand/id6450534064"
@@ -318,7 +319,7 @@
       <div class="accordion">
         <input type="checkbox" name="windows" id="windows">
         <label class="profile-card__header" for="windows">
-          برنامه مورد نیاز برای ویندوز
+          Required apps for Windows
         </label>
         <div class="accordion-content">
           <a class="profile-card__links-button"
