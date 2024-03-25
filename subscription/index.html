@@ -5,250 +5,256 @@
     <title>{{ user.username }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-          * {
-            box-sizing: border-box;
-          }
-          body {
-            background: #dbffde;
-            line-height: normal;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            direction: ltr;
-            font-family: sans-serif;
-          }
-          .profile-card {
-            position: relative;
-            border: 2px solid #000;
-            border-radius: 1rem;
-            background: #fff;
-            width: 20rem;
-            margin-top: 50px;
-            margin-bottom: 100px;
-          }
-      /*     .profile-card::before,
-          .profile-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: #fff;
-            border: 2px solid #000;
-            border-radius: 1rem;
-            z-index: -1;
-            transition: transform 200ms ease-out;
-          }
-          .profile-card:hover::before {
-            transform: rotate(-3deg) scale(1.02) translate(-1%);
-          }
-          .profile-card:hover::after {
-            transform: rotate(-6deg) scale(1.02) translate(-1%);
-            z-index: -2;
-            transition-delay: 100ms;
-          } */
-          .profile-card__avatar {
-            width: 80px;
-            height: 80px;
-            position: absolute;
-            border: 2px solid #000;
-            -o-object-fit: cover;
-            object-fit: cover;
-            box-shadow: 0 2px 0 #000;
-            top: 0;
-            left: 50%;
-            transform: translate(-50%, -80%);
-            border-radius: 1rem;
-            display: none;
-          }
-          .profile-card__bio {
-            background: #2de7f0;
-            padding: 2rem;
-            border-bottom: 2px dashed #000;
-            text-align: center;
-            border-radius: 1rem 1rem 0 0;
-            overflow: hidden;
-          }
-          .profile-card__bio-name {
-            font-size: 1.25em;
-            font-weight: 900;
-            margin-bottom: 0.8rem;
-          }
-          .sdgsdogshoi{
-            color: #000000;
-            background-image: none;
-            display: inline-block;
-            border-radius: 10px;
-            padding: 2px 10px;
-            border: 2px dotted #000;
-            box-shadow: 2px 2px 0 0 #0000002b;
-            background-image: linear-gradient(211deg, #00ff804f 0%, #2c9cb56b 100%);
-          }
-          .profile-card__bio-title {
-            font-size: 0.875em;
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-          }
-          .profile-card__links {
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            overflow: hidden;
-          }
-          .profile-card__header {
-            text-align: left;
-            font-size: 1em;
-            font-weight: bold;
-            color: #000;
-            display: flex;
-            -webkit-box-pack: justify;
-            cursor: pointer;
-          }
-          .profile-card__header::after {
-            content: "\276F";
-            width: 1rem;
-            height: 1rem;
-            text-align: center;
-            -webkit-transition: all 0.3s;
-            transition: all 0.3s;
-            margin-left: 1em;
-          }
-          input {
-            position: absolute;
-            opacity: 0;
-            z-index: -1;
-          }
-          .accordion {
-            width: 100%;
-            overflow: hidden;
-          }
-          .accordion:last-child {
-            margin-bottom: 0;
-          }
-          .accordion-content {
-            max-height: 0;
-            padding: 0 1rem;
-            -webkit-transition: all 0.3s;
-            transition: all 0.3s;
-          }
-          input:checked+.profile-card__header::after {
-            -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
-          }
-          input:checked~.accordion-content {
-            max-height: 100vh;
-            padding: 16px;
-          }
-          .profile-card__separator {
-            border-bottom: 2px dashed #000;
-            border-radius: 1rem 1rem 0 0;
-            overflow: hidden;
-          }
-          .profile-card__links-button {
-            padding: 1rem;
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            border: 2px solid #000;
-            border-radius: 0.5rem;
-            color: #000;
-            transition: box-shadow 200ms ease;
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-            background-color: #ffe3f9;
-          }
-          .profile-card__links-button:hover {
-            box-shadow: -3px 3px 0 #000;
-          }
-          .progressBarContainer {
-            margin-top: 15px;
-            position: relative;
-          }
-          .progressBar {
-            background-color: #000;
-            width: 100%;
-            height: 18px;
-            padding: 2px;
-            border-radius: 50px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-          }
-          .progressBarRect {
-            background-image: linear-gradient(90deg, #f98400 0%, #fbc118 100%);
-            height: 100%;
-            padding: 2px;
-            border-radius: inherit;
-            -webkit-animation: progressLineTransmission 2.5s 0.3s ease-in-out both;
-            animation: progressLineTransmission 2.5s 0.3s ease-in-out both;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-          }
-          .progressBarCircle {
-            background-color: #000;
-            height: calc(14px - 4px);
-            width: calc(14px - 4px);
-            border-radius: 50%;
-            box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
-          }
-          .progressBarPoint {
-            color: #000;
-            margin-top: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            position: absolute;
-          }
-          .progressBarPoint--start {
-            left: 0;
-          }
-          .progressBarPoint--end {
-            right: 0;
-          }
-          @-webkit-keyframes progressLineTransmission {
-            from {
-              width: 5%;
-            }
-            to {
-              width: {% if user.data_limit %}{{ [(user.used_traffic / user.data_limit) * 100, 5] | max }}%{% else %}100%{% endif %};
-            }
-          }
-          @keyframes progressLineTransmission {
-            from {
-              width: 5%;
-            }
-            to {
-              width: {% if user.data_limit %}{{ [(user.used_traffic / user.data_limit) * 100, 5] | max }}%{% else %}100%{% endif %};
-            }
-          }
-          .support-div{
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-          }
-          .support-a{
-            text-decoration: none;
-            color: #fff;
-            background-image: linear-gradient(100deg, #2df0bc 0%, #22cad3 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 20px;
-            padding: 10px 15px;
-            border:2px dashed #000538;
-            box-shadow: 2px 2px 0 0 #0000002b;
-          }
-          .support-svg{
-            fill: #000538;
-            width: 35px;
-          }
-          .support-svg svg{
-            fill: #fff;
-          }
-          .support-text{
-            margin-left: 10px;
-            color:#000538;
-            font-weight: 700;
-          }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        background: #dbffde;
+        line-height: normal;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        direction: ltr;
+        font-family: sans-serif;
+      }
+      .profile-card {
+        position: relative;
+        border: 2px solid #000;
+        border-radius: 1rem;
+        background: #fff;
+        width: 20rem;
+        margin-top: 50px;
+        margin-bottom: 175px;
+      }
+      .profile-card__avatar {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        border: 2px solid #000;
+        -o-object-fit: cover;
+        object-fit: cover;
+        box-shadow: 0 2px 0 #000;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -80%);
+        border-radius: 1rem;
+        display: none;
+      }
+      .profile-card__bio {
+        background: #2de7f0;
+        padding: 2rem;
+        border-bottom: 2px dashed #000;
+        text-align: center;
+        border-radius: 1rem 1rem 0 0;
+        overflow: hidden;
+      }
+      .profile-card__bio-name {
+        font-size: 1.25em;
+        font-weight: 900;
+        margin-bottom: 0.8rem;
+        color: #002729;
+      }
+      .sdgsdogshoi {
+        color: #9f3f8a;
+        display: inline-block;
+        border-radius: 10px;
+        padding: 2px 10px;
+        border: 2px dotted #000538;
+        box-shadow: -2px -2px 0px 0 #0000002b;
+        background-image: linear-gradient(211deg, #ffe3f9 0%, #ffcff5 100%);
+      }
+      .profile-card__bio-title {
+        font-size: 0.875em;
+        font-weight: 600;
+        margin-bottom: 0.6rem;
+        color: #002729;
+      }
+      .profile-card__links {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        overflow: hidden;
+      }
+      .profile-card__header {
+        text-align: left;
+        font-size: 1em;
+        font-weight: bold;
+        color: #000;
+        display: flex;
+        -webkit-box-pack: justify;
+        cursor: pointer;
+      }
+      .profile-card__header::after {
+        content: "\276F";
+        width: 1rem;
+        height: 1rem;
+        text-align: center;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        margin-left: 1em;
+      }
+      input {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+      }
+      .accordion {
+        width: 100%;
+        overflow: hidden;
+      }
+      .accordion:last-child {
+        margin-bottom: 0;
+      }
+      .accordion-content {
+        max-height: 0;
+        padding: 0 1rem;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+      input:checked+.profile-card__header::after {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+      input:checked~.accordion-content {
+        max-height: 100vh;
+        padding: 16px;
+      }
+      .profile-card__separator {
+        border-bottom: 2px dashed #000;
+        border-radius: 1rem 1rem 0 0;
+        overflow: hidden;
+      }
+      .profile-card__links-button {
+        padding: 1rem;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        border: 2px solid #000;
+        border-radius: 0.5rem;
+        color: #000;
+        transition: box-shadow 200ms ease;
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        background-color: #ffe3f9;
+      }
+      .profile-card__links-button:hover {
+        box-shadow: -3px 3px 0 #000;
+      }
+      .progressBarContainer {
+        margin-top: 15px;
+        position: relative;
+      }
+      .progressBar {
+        background-color: #000;
+        width: 100%;
+        height: 18px;
+        padding: 2px;
+        border-radius: 50px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .progressBarRect {
+        background-image: linear-gradient(90deg, #f98400 0%, #fbc118 100%);
+        height: 100%;
+        padding: 2px;
+        border-radius: inherit;
+        -webkit-animation: progressLineTransmission 2.5s 0.3s ease-in-out both;
+        animation: progressLineTransmission 2.5s 0.3s ease-in-out both;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .progressBarCircle {
+        background-color: #000;
+        height: calc(14px - 4px);
+        width: calc(14px - 4px);
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+      }
+      .progressBarPoint {
+        color: #002729;
+        margin-top: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        position: absolute;
+      }
+      .progressBarPoint--start {
+        left: 0;
+      }
+      .progressBarPoint--end {
+        right: 0;
+      }
+      @-webkit-keyframes progressLineTransmission {
+        from {
+          width: 5%;
+        }
+        to {
+          width: {% if user.data_limit %}{{ [(user.used_traffic / user.data_limit) * 100, 5] | max }}%{% else %}100%{% endif %};
+        }
+      }
+      @keyframes progressLineTransmission {
+        from {
+          width: 5%;
+        }
+        to {
+          width: {% if user.data_limit %}{{ [(user.used_traffic / user.data_limit) * 100, 5] | max }}%{% else %}100%{% endif %};
+        }
+      }
+      .support-div-a{
+        position: fixed;
+        bottom: 100px;
+        left: 30px;
+      }
+      .support-a-a{
+        text-decoration: none;
+        color: #fff;
+        background-image: linear-gradient(100deg, #2df0bc 0%, #22cad3 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        padding: 15px 25px;
+        border:2px dashed #000538;
+        box-shadow: 2px 2px 0 0 #0000002b;
+      }
+      .support-text-a{
+        margin-left: 10px;
+        color:#000538;
+        font-weight: 700;
+        font-size: 1.2em;
+      }
+
+      .support-div{
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+      }
+      .support-a{
+        text-decoration: none;
+        color: #fff;
+        background-image: linear-gradient(100deg, #2df0bc 0%, #22cad3 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        padding: 10px 15px;
+        border:2px dashed #000538;
+        box-shadow: 2px 2px 0 0 #0000002b;
+      }
+      .support-svg{
+        fill: #000538;
+        width: 35px;
+      }
+      .support-svg svg{
+        fill: #fff;
+      }
+      .support-text{
+        margin-left: 10px;
+        color:#000538;
+        font-weight: 700;
+      }
     </style>
   </head>
 
@@ -258,27 +264,19 @@
         <h1 class="profile-card__bio-name">Username: {{ user.username }}</h1>
         <h1 class="sdgsdogshoi profile-card__bio-name">
           {% if user.status.value == 'active' %}Active{% elif user.status.value
-          == 'limited' %}Limited{% elif user.status.value == 'expired'
-          %}Expired{% elif user.status.value == 'disabled' %}Disabled{% endif %}
+          == 'on_hold' %}On Hold{% elif user.status.value == 'limited'
+          %}Limited{% elif user.status.value == 'expired' %}Expired{% elif
+          user.status.value == 'disabled' %}Disabled{% endif %}
         </h1>
-        <!--       <h2 class="profile-card__bio-title"> حجم مصرف شده: {{ user.used_traffic | bytesformat }}</h2>
-      {% if user.data_limit_reset_strategy != 'no_reset' %}
-      <h2 class="profile-card__bio-title" style="direction: ltr;">
-        (resets every {{ user.data_limit_reset_strategy.value }})
-      </h2>
-      {% endif %}
-      <h2 class="profile-card__bio-title"> حجم کل: {% if not user.data_limit %}∞{% else %}{{ user.data_limit |
-        bytesformat }}{% endif %}
-      </h2> -->
         <h2 class="profile-card__bio-title">
-          Remaining time: {% if not user.expire %} ∞ {% else %} {% set
-          current_timestamp = now().timestamp() %} {% set remaining_seconds =
-          [user.expire - current_timestamp, 0] | max %} {% set remaining_days =
+          {% if not user.expire %} ∞ {% else %} {% set current_timestamp =
+          now().timestamp() %} {% set remaining_seconds = [user.expire -
+          current_timestamp, 0] | max %} {% set remaining_days =
           remaining_seconds // (24 * 3600) %} {% set remaining_hours =
           (remaining_seconds % (24 * 3600)) // 3600 %} {% set remaining_minutes
           = (remaining_seconds % 3600) // 60 %} {% if remaining_days >= 1 %} {{
-          remaining_days | int }} days {% else %} {{ remaining_hours | int }}
-          hours {% endif %} {% endif %}
+          remaining_days | int }} days remaining {% else %} {{ remaining_hours |
+          int }} hours remaining {% endif %} {% endif %}
         </h2>
         <div class="progressBarContainer">
           <div class="progressBar">
@@ -299,12 +297,12 @@
         <div class="accordion">
           <input type="checkbox" name="quick-add" id="quick-add" />
           <label class="profile-card__header" for="quick-add">
-            Add subscription to app
+            Quick add subscription to the app
           </label>
           <div class="accordion-content">
             <a
               class="profile-card__links-button"
-              href="v2rayng://install-config?url={{ user.subscription_url }}"
+              href="v2rayng://install-config?url={{ user.subscription_url }}&name={{ user.username | urlencode }}"
               rel="noopener noreferrer"
               target="_blank"
               >Add to v2rayNG</a
@@ -318,13 +316,11 @@
             >
             <a
               class="profile-card__links-button"
-              href="v2box://install-sub?url={{ user.subscription_url }}&name={{ user.username }}"
+              href="v2box://install-sub?url={{ user.subscription_url }}&name={{ user.username | urlencode }}"
               rel="noopener noreferrer"
               target="_blank"
               >Add to V2Box</a
             >
-            <!--           <a class="profile-card__links-button" href="sing-box://import-remote-profile?url={{ user.subscription_url | urlencode }}#{{ user.username | urlencode }}"
-            rel="noopener noreferrer" target="_blank">Add to sing-box</a> -->
           </div>
         </div>
         <div class="profile-card__separator"></div>
@@ -348,9 +344,6 @@
               target="_blank"
               >v2rayNG - Google Play</a
             >
-            <!--           <a class="profile-card__links-button"
-          href="https://github.com/SagerNet/sing-box/releases/download/v1.8.10/SFA-1.8.10-universal.apk"
-          rel="noopener noreferrer" target="_blank">sing-box</a> -->
           </div>
         </div>
         <div class="profile-card__separator"></div>
@@ -379,8 +372,6 @@
               target="_blank"
               >FoXray</a
             >
-            <!--           <a class="profile-card__links-button" href="https://apps.apple.com/us/app/sing-box/id6451272673"
-            rel="noopener noreferrer" target="_blank">sing-box</a> -->
           </div>
         </div>
         <div class="profile-card__separator"></div>
@@ -392,21 +383,27 @@
           <div class="accordion-content">
             <a
               class="profile-card__links-button"
-              href="https://github.com/2dust/v2rayN/releases/download/6.39/zz_v2rayN-With-Core-SelfContained.7z"
-              rel="noopener noreferrer"
-              target="_blank"
-              >V2rayN</a
-            >
-            <a
-              class="profile-card__links-button"
               href="https://github.com/MatsuriDayo/nekoray/releases/download/3.26/nekoray-3.26-2023-12-09-windows64.zip"
               rel="noopener noreferrer"
               target="_blank"
               >NekoRay</a
             >
+            <a
+              class="profile-card__links-button"
+              href="https://github.com/2dust/v2rayN/releases/download/6.39/zz_v2rayN-With-Core-SelfContained.7z"
+              rel="noopener noreferrer"
+              target="_blank"
+              >V2rayN</a
+            >
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="support-div-a">
+      <a class="support-a-a" href="https://help.aryadaru.shop" target="_blank">
+        <span class="support-text-a"> Amoozesh!!! </span>
+      </a>
     </div>
 
     <div class="support-div">
