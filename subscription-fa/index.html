@@ -7,6 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "lmq3nrfx2a");
+  </script>
     <style>
       * {
         box-sizing: border-box;
@@ -31,7 +38,7 @@
         background: #fff;
         width: 20rem;
         margin-top: 50px;
-        margin-bottom: 110px;
+        margin-bottom: 175px;
       }
       .profile-card__avatar {
         width: 80px;
@@ -235,8 +242,7 @@
 
       .support-div{
         position: fixed;
-        bottom: 30px;
-        left: 30px;
+        bottom: 100px;
       }
       .support-a{
         text-decoration: none;
@@ -349,7 +355,6 @@
         </div>
       </div>
       <div class="profile-card__links">
-        {% if user.status == 'active' or user.status == 'on_hold' %}
         <div class="accordion">
           <input type="checkbox" name="quick-add" id="quick-add" />
           <label class="profile-card__header" for="quick-add">
@@ -377,29 +382,12 @@
               target="_blank"
               >افزودن به V2Box</a
             >
+            <a class="profile-card__links-button copy-button" onclick="copyLink('{{ user.subscription_url }}', this)">
+              کپی لینک سابسکریپشن
+            </a>
           </div>
         </div>
         <div class="profile-card__separator"></div>
-        <div class="accordion">
-          <input type="checkbox" name="copy-configs" id="copy-configs" />
-          <label class="profile-card__header" for="copy-configs">
-            کانفیگ‌ها به تفکیک
-          </label>
-          <div class="accordion-content" style="padding: 0 0 0 1rem;direction: ltr;">
-            
-            <ul class="configs-add">
-                {% for link in user.links %}
-                <li>
-                    <input type="text" value="{{ link }}" readonly>
-                    <button class="copy-button" onclick="copyLink('{{ link }}', this)">کپی</button>
-                </li>
-                {% endfor %}
-            </ul>
-            
-          </div>
-        </div>
-        <div class="profile-card__separator"></div>
-        {% endif %}
         <div class="accordion">
           <input type="checkbox" name="android" id="android" />
           <label class="profile-card__header" for="android">
@@ -443,13 +431,13 @@
               target="_blank"
               >V2Box</a
             >
-            <a
+            <!-- <a
               class="profile-card__links-button"
               href="https://apps.apple.com/us/app/foxray/id6448898396"
               rel="noopener noreferrer"
               target="_blank"
               >FoXray</a
-            >
+            > -->
           </div>
         </div>
         <div class="profile-card__separator"></div>
@@ -478,13 +466,7 @@
       </div>
     </div>
 
-    <div class="support-div-a">
-      <a class="support-a-a" href="https://help.aryadaru.shop" target="_blank">
-        <span class="support-text-a"> آموزش اتصال!!! </span>
-      </a>
-    </div>
-
-    <!-- <div class="support-div">
+    <div class="support-div">
       <a class="support-a" href="https://t.me/vpncrypto_admin">
         <svg
           class="support-svg"
@@ -501,7 +483,13 @@
 
         <span class="support-text"> پشتیبانی تلگرام</span>
       </a>
-    </div> -->
+    </div>
+
+    <div class="support-div-a">
+      <a class="support-a-a" href="https://help.aryadaru.shop" target="_blank">
+        <span class="support-text-a"> آموزش اتصال!!! </span>
+      </a>
+    </div>
 
 
     <script>
@@ -515,7 +503,7 @@
 
           button.textContent = 'کپی شد!';
           setTimeout(function () {
-              button.textContent = 'کپی';
+              button.textContent = 'کپی لینک سابسکریپشن';
           }, 1500);
       }
   </script>
