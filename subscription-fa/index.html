@@ -508,6 +508,12 @@
             >
               کپی لینک سابسکریپشن
             </a>
+            <a
+              class="profile-card__links-button copy-button"
+              onclick="copyOldLink('{{ user.subscription_url }}/v2ray', this)"
+            >
+              کپی لینک ساب قدیمی
+            </a>
           </div>
         </div>
 
@@ -775,6 +781,20 @@
         button.textContent = "کپی شد!";
         setTimeout(function () {
           button.textContent = "کپی لینک سابسکریپشن";
+        }, 1500);
+      }
+
+      function copyOldLink(link, button) {
+        const tempInput = document.createElement("input");
+        tempInput.setAttribute("value", link);
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+
+        button.textContent = "کپی شد!";
+        setTimeout(function () {
+          button.textContent = "کپی لینک ساب قدیمی";
         }, 1500);
       }
 
